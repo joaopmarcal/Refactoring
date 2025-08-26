@@ -17,11 +17,6 @@ function renderPlainText(data) {
     result += `Amount owed is ${usd(data.totalAmount)}\n`;
     result += `You earned ${data.totalVolumeCredits} credits\n`;
     return result;
-    function usd(Anumber) {
-        return new Intl.NumberFormat("en-US",
-            { style: "currency", currency: "USD",
-                minimumFractionDigits: 2}).format(Anumber/100);
-    }
 }
 
 function htmlStatement(invoice, plays) {
@@ -40,11 +35,12 @@ function renderHtml(data) {
     result += `<p>Amount owed is <em>${usd(data.totalAmount)}</em></p>\n`;
     result += `<p>You earned <em>${data.totalVolumeCredits}</em> credits</p>\n`;
     return result;
-    function usd(Anumber) {
-        return new Intl.NumberFormat("en-US",
-            { style: "currency", currency: "USD",
-                minimumFractionDigits: 2}).format(Anumber/100);
-    }
+}
+
+function usd(Anumber) {
+    return new Intl.NumberFormat("en-US",
+        { style: "currency", currency: "USD",
+            minimumFractionDigits: 2}).format(Anumber/100);
 }
 
 console.log(statement(invoice,plays));
