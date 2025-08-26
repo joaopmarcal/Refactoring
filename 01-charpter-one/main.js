@@ -7,7 +7,6 @@ const plays = JSON.parse(playJSON);
 function statement (invoice, plays) {
     let result = `Statement for ${invoice.customer}\n`;
     for(let perf of invoice.performances) {
-        //exibe a linha para esta requisição
         result += `  ${playFor(perf).name}: ${usd(amountFor(perf))} (${perf.audience} seats)\n`;
     }
     result += `Amount owed is ${usd(appleSauce())}\n`;
