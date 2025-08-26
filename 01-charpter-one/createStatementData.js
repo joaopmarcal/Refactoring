@@ -6,7 +6,7 @@ export default function createStatementData(invoice,plays) {
     result.totalVolumeCredits = totalVolumeCredits(result);
     return result;
     function enrichPerformance(aPerformance) {
-        const calculator = new PerformanceCalculator(aPerformance, playFor(aPerformance));
+        const calculator = createPerformanceCalculator(aPerformance, playFor(aPerformance));
         const result = Object.assign({}, aPerformance);
         result.play = calculator.play;
         result.amount = calculator.amount;
@@ -57,4 +57,8 @@ class PerformanceCalculator {
         if("comedy" === this.play.type) result += Math.floor(this.performance.audience / 5);
         return result;
     }
+}
+
+function createPerformanceCalculator(aPerformance, aPlay) {
+    new PerformanceCalculator(aPerformance, aPlay);
 }
