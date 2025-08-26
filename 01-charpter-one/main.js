@@ -30,11 +30,21 @@ function totalVolumeCredits() {
     return result;
 }
 
+function usd(Anumber) {
+    return new Intl.NumberFormat("en-US",
+           { style: "currency", currency: "USD",
+            minimumFractionDigits: 2}).format(Anumber/100);
+}
+
 function volumeCreditsFor(aPerformance) {
     let result = 0;
     result += Math.max(aPerformance.audience - 30,0);
     if("comedy" === playFor(aPerformance).type) result += Math.floor(aPerformance.audience / 5);
     return result;
+}
+
+function playFor(aPerformance){
+    return plays[aPerformance.playID];
 }
 
 function amountFor(aPerformance) {
@@ -57,16 +67,6 @@ function amountFor(aPerformance) {
         throw new Error(`unknown type: ${playFor(aPerformance).type}`);
     }
     return result;
-}
-
-function playFor(aPerformance){
-    return plays[aPerformance.playID];
-}
-
-function usd(Anumber) {
-    return new Intl.NumberFormat("en-US",
-           { style: "currency", currency: "USD",
-            minimumFractionDigits: 2}).format(Anumber/100);
 }
 
 console.log(statement(invoice,plays));
